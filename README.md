@@ -1,6 +1,6 @@
-# Ruby Enumerable Tests
+# Ruby Tic Tac Toe Testing
 
-Testing custom enumerable methods with Rspec.
+Testing custom tic tac toe methods with Rspec.
 
 ## Authors
 
