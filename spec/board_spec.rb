@@ -37,4 +37,11 @@ RSpec.describe Board do
       expect(subject).to be_tie
     end
   end
+
+  describe "#to_s" do
+    it "return string representing the board" do
+      expect(subject.to_s).to eql(" \e[37m1\e[0m | \e[37m2\e[0m | \e[37m3\e[0m\n---+---+---\n \e[37m4\e[0m | \e[37m5\e[0m | \e[37m6\e[0m\n---+---+---\n \e[37m7\e[0m | \e[37m8\e[0m | \e[37m9\e[0m")
+    end
+  end
+
 end
