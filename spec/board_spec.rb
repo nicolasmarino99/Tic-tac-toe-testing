@@ -25,18 +25,6 @@ RSpec.describe Board do
       expect(subject.winner?("O")).to eql(true)
     end
   end
-  
-  describe "#tie?" do
-    it "returns false for a non tie" do
-      expect(subject).not_to be_tie
-    end
-    it "returns false for a tie" do
-      subject.board = ["O", "X", "O",
-                    "X", "X", "O", 
-                    "X", "O", "X"]
-      expect(subject).to be_tie
-    end
-  end
 
   describe "#to_s" do
     it "return string representing the board" do

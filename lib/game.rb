@@ -15,15 +15,13 @@ class Game
   def play
     puts @board
 
-    loop do
-      movePosition(@player1)
-      
-      if @board.tie?
-        puts "I's a tie."
-        return
-      end
-      movePosition(@player2)
+    (1..9).each do |i|
+      moveToPosition i.odd? ? @player1 : @player2
+      return if winner? i.odd? ? @player1 : @player2
     end
+
+    puts "I's a tie."
+  
   end
   
   private
@@ -34,14 +32,18 @@ class Game
     Player.new(name, mark)
   end
 
-  def movePosition(player)
+  def moveToPosition(player)
     position1 = player.get_position( @board.board)
     player.move(position1, @board.board)
+  end
+
+  def winner?(player)
     puts @board
     if @board.winner?(player.mark)
       puts Paint["The winner is '#{player.name}'!", :green, :bright]
-      return
+      return true
     end
+    false
   end
 
   def print_title
