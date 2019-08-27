@@ -13,30 +13,35 @@ class Game
     player2 = gets.chomp
     @player1 = Player.new(player1, 'X')
     @player2 = Player.new(player2, 'O')
-    @board = Board.new(@player1, @player2)
+    @board = Board.new
   end
 
   def play
     loop do
-      @board.print
+      puts @board
 
-      @player1.move(@board.board)
-      break if @board.winner? || @board.tie?
-
-      @board.print
-
-      @player2.move(@board.board)
-      break if @board.winner? || @board.tie?
+      position1 = @player1.get_position( @board.board)
+      @player1.move(position1, @board.board)
+      
+      puts @board
+      
+      if @board.winner?(@player1.mark)
+        puts Paint["The winner is '#{@player1.name}'!", :green, :bright]
+        return
+      end
+      if @board.tie?
+        puts "I's a tie."
+        return
+      end
+      
+      position2 = @player2.get_position( @board.board)
+      @player2.move(position2, @board.board)
+      if @board.winner?(@player2.mark)
+        puts @board
+        puts Paint["The winner is '#{@player2.name}'!", :green, :bright]
+        return
+      end
     end
-
-    if @board.winner?
-      puts ''
-      puts Paint["The winner is '#{@board.winner}'!", :green, :bright]
-    else
-      puts "I's a tie."
-    end
-
-    @board.print
   end
 
   private

@@ -7,16 +7,19 @@ class Player
     @mark = mark
   end
 
-  def move(board)
+  def move(position, board)
+    board[position - 1] = @mark
+  end
+
+  def get_position(board)
     print "Player '#{@name}' move: "
-    move = gets.chomp.to_i
-    while board[move - 1] != move
+    position = gets.chomp.to_i
+    while board[position - 1]
       puts 'That position is taken!'
       print 'Chose another position: '
-      move = gets.chomp.to_i
+      position = gets.chomp.to_i
     end
-    board[move - 1] = @mark
+    position
   end
-  def playerRestriction()
-  end
+
 end
