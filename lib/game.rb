@@ -7,12 +7,8 @@ require_relative './board.rb'
 class Game
   def initialize
     print_title
-    print 'Player 1 name: '
-    player1 = gets.chomp
-    print 'Player 2 name: '
-    player2 = gets.chomp
-    @player1 = Player.new(player1, 'X')
-    @player2 = Player.new(player2, 'O')
+    @player1 = createPlayer 'X'
+    @player2 = createPlayer 'O'
     @board = Board.new
   end
 
@@ -29,6 +25,14 @@ class Game
       movePosition(@player2)
     end
   end
+  
+  private
+
+  def createPlayer(mark)
+    print "Player '#{mark}' name: "
+    name = gets.chomp
+    Player.new(name, mark)
+  end
 
   def movePosition(player)
     position1 = player.get_position( @board.board)
@@ -39,8 +43,6 @@ class Game
       return
     end
   end
-
-  private
 
   def print_title
     puts <<-'TITLE'
