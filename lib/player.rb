@@ -8,7 +8,12 @@ class Player
   end
 
   def move(position, board)
-    board[position - 1] = @mark
+
+    if position.between?(1, 9)
+      board[position - 1] = @mark   
+    else   
+    false
+    end
   end
 
   def get_position(board)
