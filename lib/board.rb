@@ -28,7 +28,7 @@ class Board
 
   def to_s
     @board.each_slice(3).with_index.map do |row, i|
-      " #{row.map.with_index(i * 3 + 1) { |v, i| print_cell(v || i) }.join(' | ')}"
+      " #{row.map.with_index(i * 3 + 1) { |v, j| print_cell(v || j) }.join(' | ')}"
     end.join("\n---+---+---\n")
   end
 

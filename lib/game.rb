@@ -7,8 +7,8 @@ require_relative './board.rb'
 class Game
   def initialize
     print_title
-    @player1 = createPlayer 'X'
-    @player2 = createPlayer 'O'
+    @player1 = create_player 'X'
+    @player2 = create_player 'O'
     @board = Board.new
   end
 
@@ -16,8 +16,8 @@ class Game
     puts @board
 
     (1..9).each do |i|
-      moveToPosition i.odd? ? @player1 : @player2
-      return if winner? i.odd? ? @player1 : @player2
+      move_to_position i.odd? ? @player1 : @player2
+      return true if winner? i.odd? ? @player1 : @player2
     end
 
     puts "I's a tie."
@@ -25,13 +25,13 @@ class Game
 
   private
 
-  def createPlayer(mark)
+  def create_player(mark)
     print "Player '#{mark}' name: "
     name = gets.chomp
     Player.new(name, mark)
   end
 
-  def moveToPosition(player)
+  def move_to_position(player)
     position1 = player.get_position(@board.board)
     player.move(position1, @board.board)
   end
