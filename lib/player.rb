@@ -17,4 +17,6 @@ class Player
     end
     board[move - 1] = @mark
   end
+  def playerRestriction()
+  end
 end
