@@ -16,28 +16,35 @@ class Game
     @board = Board.new
   end
 
-  def play
-    loop do
-      puts @board
-
-      position1 = @player1.get_position( @board.board)
-      @player1.move(position1, @board.board)
+ def movePosition(player)
+  position1 = player.get_position( @board.board)
+  player.move(position1, @board.board)
       
       puts @board
       
-      if @board.winner?(@player1.mark)
-        puts Paint["The winner is '#{@player1.name}'!", :green, :bright]
+      if @board.winner?(player.mark)
+        puts Paint["The winner is '#{player.name}'!", :green, :bright]
         return
       end
+ end
+
+
+  def play
+    puts @board
+    loop do
+      
+
+      movePosition(@player1)
+      
       if @board.tie?
         puts "I's a tie."
         return
       end
-      
+      #playersposition(@player2)
       position2 = @player2.get_position( @board.board)
       @player2.move(position2, @board.board)
+      puts @board      
       if @board.winner?(@player2.mark)
-        puts @board
         puts Paint["The winner is '#{@player2.name}'!", :green, :bright]
         return
       end
