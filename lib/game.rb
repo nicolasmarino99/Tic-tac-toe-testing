@@ -21,9 +21,8 @@ class Game
     end
 
     puts "I's a tie."
-  
   end
-  
+
   private
 
   def createPlayer(mark)
@@ -33,7 +32,7 @@ class Game
   end
 
   def moveToPosition(player)
-    position1 = player.get_position( @board.board)
+    position1 = player.get_position(@board.board)
     player.move(position1, @board.board)
   end
 

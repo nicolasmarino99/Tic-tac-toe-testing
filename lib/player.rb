@@ -8,13 +8,13 @@ class Player
   end
 
   def move(position, board)
-    return position.between?(1, 9) ? board[position - 1] = @mark : false
+    position.between?(1, 9) ? board[position - 1] = @mark : false
   end
 
   def get_position(board)
     print "Player '#{@name}' move: "
     position = gets.chomp.to_i
-    while !position.between?(1, 9)
+    until position.between?(1, 9)
       puts 'That not a valid position!'
       print 'Chose another position: '
       position = gets.chomp.to_i
@@ -26,5 +26,4 @@ class Player
     end
     position
   end
-
 end
