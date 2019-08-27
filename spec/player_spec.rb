@@ -19,4 +19,9 @@ describe Player do
       expect(board).to eql(["X", "X", nil, "O", "O", nil, nil, nil, nil])
     end
   end
+    it "returns false if the input is out of boundaries" do
+      board = Array.new(9, nil)
+      player1 = Player.new("p1", "X")
+      expect(player1.move(100, board)).to eql(false)
+    end
 end
