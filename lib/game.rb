@@ -14,9 +14,9 @@ class Game
   def play
     puts @board
 
-    (1..9).each do |i|
-      move_to_position i.odd? ? @player1 : @player2
-      return true if winner? i.odd? ? @player1 : @player2
+    9.times do |i|
+      move_to_position i.even? ? @player1 : @player2
+      return true if winner? i.even? ? @player1 : @player2
     end
 
     puts "I's a tie."
