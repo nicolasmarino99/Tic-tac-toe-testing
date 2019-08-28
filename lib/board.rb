@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'paint'
-
 class Board
   attr_accessor :board
 
@@ -28,17 +26,8 @@ class Board
 
   def to_s
     @board.each_slice(3).with_index.map do |row, i|
-      " #{row.map.with_index(i * 3 + 1) { |v, j| print_cell(v || j) }.join(' | ')}"
+      " #{row.map.with_index(i * 3 + 1) { |v, j| v || j }.join(' | ')}"
     end.join("\n---+---+---\n")
   end
 
-  private
-
-  def print_cell(value)
-    if value.is_a? Integer
-      Paint[value, :gray]
-    else
-      Paint[value, :blue, :bright]
-    end
-  end
 end

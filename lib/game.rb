@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'paint'
 require_relative './player.rb'
 require_relative './board.rb'
 
@@ -39,7 +38,7 @@ class Game
   def winner?(player)
     puts @board
     if @board.winner?(player.mark)
-      puts Paint["The winner is '#{player.name}'!", :green, :bright]
+      puts "Player '#{player.name}' is the winner!"
       return true
     end
     false
