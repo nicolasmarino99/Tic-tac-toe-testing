@@ -12,7 +12,7 @@ describe Player do
       player1.move(7, board)
       expect(board).to eql([nil, nil, nil, nil, nil, nil, 'X', nil, nil])
     end
-    
+
     it 'updates the board with multiple moves from two players' do
       board = Array.new(9, nil)
       player1.move(1, board)
