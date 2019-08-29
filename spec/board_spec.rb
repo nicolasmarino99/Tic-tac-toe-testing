@@ -34,9 +34,7 @@ RSpec.describe Board do
 
   describe '#to_s' do
     it 'return string representing the board' do
-      expected_string = " \e[37m1\e[0m | \e[37m2\e[0m | \e[37m3\e[0m\n---+---+---\n"
-      expected_string += " \e[37m4\e[0m | \e[37m5\e[0m | \e[37m6\e[0m\n---+---+---\n"
-      expected_string += " \e[37m7\e[0m | \e[37m8\e[0m | \e[37m9\e[0m"
+      expected_string = " 1 | 2 | 3\n---+---+---\n 4 | 5 | 6\n---+---+---\n 7 | 8 | 9"
       expect(board.to_s).to eql(expected_string)
     end
   end

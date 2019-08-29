@@ -29,5 +29,4 @@ class Board
       " #{row.map.with_index(i * 3 + 1) { |v, j| v || j }.join(' | ')}"
     end.join("\n---+---+---\n")
   end
-
 end
