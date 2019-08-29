@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pty'
-
 class Player
   attr_reader :name, :mark
   def initialize(name, mark)
