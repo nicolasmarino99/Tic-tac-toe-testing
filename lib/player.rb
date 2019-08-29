@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pty'
+
 class Player
   attr_reader :name, :mark
   def initialize(name, mark)
@@ -13,17 +15,25 @@ class Player
 
   def get_position(board)
     print "Player '#{@name}' move: "
-    position = gets.chomp.to_i
-    until position.between?(1, 9)
+    position = gets.to_i
+    unless valid_position?(position)
       puts 'That not a valid position!'
       print 'Chose another position: '
-      position = gets.chomp.to_i
+      position = gets.to_i
     end
-    while board[position - 1]
+    unless taken_position?(board, position)
       puts 'That position is taken!'
       print 'Chose another position: '
-      position = gets.chomp.to_i
+      position = gets.to_i
     end
     position
+  end
+
+  def valid_position?(position)
+    position.to_i.between?(1, 9)
+  end
+
+  def taken_position?(board, position)
+    !board[position - 1]
   end
 end
