@@ -1,45 +1,48 @@
 # frozen_string_literal: true
 
-require 'paint'
 require_relative './player.rb'
 require_relative './board.rb'
 
 class Game
   def initialize
     print_title
-    print 'Player 1 name: '
-    player1 = gets.chomp
-    print 'Player 2 name: '
-    player2 = gets.chomp
-    @player1 = Player.new(player1, 'X')
-    @player2 = Player.new(player2, 'O')
-    @board = Board.new(@player1, @player2)
+    @player1 = create_player 'X'
+    @player2 = create_player 'O'
+    @board = Board.new
   end
 
   def play
-    loop do
-      @board.print
+    puts @board
 
-      @player1.move(@board.board)
-      break if @board.winner? || @board.tie?
-
-      @board.print
-
-      @player2.move(@board.board)
-      break if @board.winner? || @board.tie?
+    9.times do |i|
+      move_to_position i.even? ? @player1 : @player2
+      return true if winner? i.even? ? @player1 : @player2
     end
 
-    if @board.winner?
-      puts ''
-      puts Paint["The winner is '#{@board.winner}'!", :green, :bright]
-    else
-      puts "I's a tie."
-    end
-
-    @board.print
+    puts "I's a tie."
   end
 
   private
+
+  def create_player(mark)
+    print "Player '#{mark}' name: "
+    name = gets.chomp
+    Player.new(name, mark)
+  end
+
+  def move_to_position(player)
+    position1 = player.get_position(@board.board)
+    player.move(position1, @board.board)
+  end
+
+  def winner?(player)
+    puts @board
+    if @board.winner?(player.mark)
+      puts "Player '#{player.name}' is the winner!"
+      return true
+    end
+    false
+  end
 
   def print_title
     puts <<-'TITLE'
